@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Quiz · start.ng</title>
+  <meta name="description" content="Make a quiz, share the code, and play live with up to 100 people. Free in your browser on start.ng.">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://start.ng/kit.js" defer></script>
+</head>
+<body>
+  <main id="app">
+    <h1>Quiz</h1>
+
+    <!-- the lobby -->
+    <section id="lobby">
+      <p class="lead">Make a quiz and play it live with a room of up to 100 people. Faster right answers score more.</p>
+      <p class="invite" id="invite" hidden></p>
+      <form id="join" class="join" autocomplete="off">
+        <label for="code">Have a code?</label>
+        <input id="code" name="code" maxlength="6" autocapitalize="characters" spellcheck="false" placeholder="K7M2QX">
+        <button type="submit" class="primary">Join</button>
+      </form>
+      <div class="buttons">
+        <button type="button" id="host">Make a quiz</button>
+      </div>
+      <p class="note">You need to be signed in with start.ng. The person who makes the quiz is the host and starts it; everyone else answers on their own screen.</p>
+      <p class="problem" id="lobby-problem" role="status" hidden></p>
+      <button type="button" id="signin" hidden>Sign in with start.ng</button>
+    </section>
+
+    <!-- the host writes the questions -->
+    <section id="builder" class="left" hidden>
+      <label class="field">Name of the quiz
+        <input id="title" maxlength="80" placeholder="Capitals of Africa">
+      </label>
+      <div id="questions" class="questions"></div>
+      <div class="buttons">
+        <button type="button" id="add-question">Add a question</button>
+        <button type="button" id="create" class="primary">Make the room</button>
+        <button type="button" id="builder-cancel" class="link">Cancel</button>
+      </div>
+      <p class="problem" id="builder-problem" role="status" hidden></p>
+    </section>
+
+    <!-- waiting for people -->
+    <section id="waiting" hidden>
+      <p class="lead" id="waiting-title">Share this code</p>
+      <div class="code-box">
+        <span class="code" id="room-code" aria-label="Room code"></span>
+        <button type="button" id="copy">Copy invite link</button>
+      </div>
+      <p class="count-line" id="people"></p>
+      <ul class="names" id="names"></ul>
+      <div class="buttons">
+        <button type="button" id="start" class="primary" hidden>Start the quiz</button>
+        <button type="button" id="wait-cancel" class="link">Leave</button>
+      </div>
+      <p class="note" id="waiting-note"></p>
+    </section>
+
+    <!-- the game -->
+    <section id="game" hidden aria-label="The quiz">
+      <p class="progress" id="progress"></p>
+      <div class="bar" id="bar" hidden><i id="bar-fill"></i></div>
+      <h2 class="question" id="question" aria-live="polite"></h2>
+      <div class="answers" id="answers"></div>
+      <p class="status" id="status" role="status" aria-live="polite"></p>
+      <ol class="top" id="top" hidden></ol>
+      <p class="note" id="game-note" role="status" aria-live="polite"></p>
+      <div class="buttons">
+        <button type="button" id="skip" class="primary" hidden>Skip</button>
+        <button type="button" id="share" hidden>Share on X</button>
+        <button type="button" id="back" class="primary" hidden>Back to the lobby</button>
+      </div>
+    </section>
+  </main>
+  <script src="game.js"></script>
+</body>
+</html>
