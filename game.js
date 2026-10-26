@@ -65,6 +65,7 @@
       if (m.code === 'bad_setup') { leaveRoom(''); show('builder'); builderProblem(m.message); } else note(m.message);
     });
     r.on('closed', (m) => leaveRoom(reasonText(m.reason)));
+    StartngExtras.watch(r, { hosted: true }); // sounds, the "play again?" popup, and the waiting spinner (extras.js)
     render();
   }
 
@@ -81,6 +82,7 @@
 
   function leaveRoom(message) {
     room?.leave();
+    StartngExtras.reset();
     room = null;
     pendingSetup = null;
     clearInterval(timer);
